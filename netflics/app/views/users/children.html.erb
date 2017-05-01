@@ -1,0 +1,49 @@
+<% provide(:title, 'Manage Children') %>
+<h1 class="ui center aligned huge header">
+  <div class="content header_text">
+    Manage Children Accounts
+  </div>
+</h1>
+
+<div class="ui center aligned grid" style="margin-top:3%;">
+	<button class="positive ui button" id="new_child_button"> Create Child Account</button>
+</div>
+
+<div class="ui center aligned grid" style="margin-top:3%">
+
+  <div class="ui cards">
+	<% if current_user.child.any? %>
+		<% current_user.child.each do |child| %>
+		  <div class="card">
+		    <div class="content">
+		      <div class="header"><%= child.first_name %> <%= child.last_name %></div>
+		      <div class="description">
+		        Created on <%= child.created_at %>
+		      </div>
+		    </div>
+		    <div class="ui bottom attached red button">
+		      <i class="delete icon"></i>
+		      Delete Child Account
+		    </div>
+		  </div>
+		<% end %>
+	<% else %>
+		  <div class="card">
+		    <div class="content">
+		      <div class="header" style="text-align: center;margin:0 auto;">You have no child accounts</div>
+		      <div class="description">
+		      </div>
+		    </div>
+		  </div>	
+	<% end %>
+	</div>
+
+</div>
+
+
+
+<script>
+	$('#new_child_button').on('click', function(){
+		$('#new_child_form').toggle();
+	});
+</script>

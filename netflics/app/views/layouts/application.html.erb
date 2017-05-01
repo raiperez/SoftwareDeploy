@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= full_title(yield(:title)) %></title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all',
+                                              'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+  <body>
+    <%= render 'layouts/header' %>
+    <%= yield :outer %>
+    <div id="main_container">
+      <div class="ui container inverted segment" id="page_container">
+        <%= yield %>
+      </div>
+      <!-- <div class="ui segment"> <%= debug(params) if Rails.env.development? %></div> -->
+    </div>
+    <%= render 'layouts/footer' %>
+  </body>
+</html>

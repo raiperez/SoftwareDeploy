@@ -1,0 +1,65 @@
+<% provide(:title, 'Sign up') %>
+<h1 class="ui center aligned huge header">
+  <div class="content header_text">
+    Sign Up
+  </div>
+</h1>
+
+<div class="ui hidden segment" style="width:60%;margin:0 auto;">
+  <div class="ui center aligned form <% if @user.errors.any? %> error <%end%>">
+    <%= form_for(@user, url: signup_path) do |f| %>
+
+      <div class="<% if @user.errors.include?(:first_name) %> error <%end%> field">
+        <%= f.label :first_name %>
+        <%= f.text_field :first_name, class: '' %>
+      </div>
+      <% if @user.errors.include?(:first_name) %>
+        <div class="ui red pointing label" style="margin-bottom:12px;margin-top:0px;">
+          <%= @user.errors.full_messages_for(:first_name).to_sentence %>
+        </div>
+      <%end%>
+
+      <div class="<% if @user.errors.include?(:last_name) %> error <%end%>field">
+        <%= f.label :last_name %>
+        <%= f.text_field :last_name, class: '' %>
+      </div>
+      <% if @user.errors.include?(:last_name) %>
+        <div class="ui red pointing label" style="margin-bottom:12px;margin-top:0px;">
+          <%= @user.errors.full_messages_for(:last_name).to_sentence %>
+        </div>
+      <%end%>
+
+      <div class="<% if @user.errors.include?(:email) %> error <%end%>field">
+        <%= f.label :email %>
+        <%= f.email_field :email, class: '' %>
+      </div>
+      <% if @user.errors.include?(:email) %>
+        <div class="ui red pointing label" style="margin-bottom:12px;margin-top:0px;">
+          <%= @user.errors.full_messages_for(:email).to_sentence %>
+        </div>
+      <%end%>
+
+      <div class="<% if @user.errors.include?(:password) %> error <%end%>field">
+        <%= f.label :password %>
+        <%= f.password_field :password, class: '' %>
+      </div>
+      <% if @user.errors.include?(:password) %>
+        <div class="ui red pointing label" style="margin-bottom:12px;margin-top:0px;">
+          <%= @user.errors.full_messages_for(:password).to_sentence %>
+        </div>
+      <%end%>
+
+      <div class="<% if @user.errors.include?(:password_confirmation) %> error <%end%>field">
+        <%= f.label :password_confirmation, "Confirmation" %>
+        <%= f.password_field :password_confirmation, class: '' %>
+      </div>
+      <% if @user.errors.include?(:password_confirmation) %>
+        <div class="ui red pointing label" style="margin-bottom:12px;margin-top:0px;">
+          <%= @user.errors.full_messages_for(:password_confirmation).to_sentence %>
+        </div>
+      <%end%>
+
+      <%= f.submit "Create my account", class: "ui fluid blue button" %>
+    <% end %>
+  </div>
+</div>

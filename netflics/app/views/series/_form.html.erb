@@ -1,0 +1,77 @@
+<%= form_for(series) do |f| %>
+
+  <div class="<% if series.errors.include?(:name) %> error <%end%>field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <% if series.errors.include?(:name) %>
+    <div class="ui red pointing label" style="margin-bottom:12px;margin-top:0px;">
+      <%= series.errors.full_messages_for(:name).to_sentence %>
+    </div>
+  <%end%>
+
+  <select name="series[genre]" class="ui field fluid normal dropdown">
+    <% if @new %>
+      <option value="">Genre</option>
+    <% else %>
+      <option value="<%= series.genre %>"><%= series.genre %></option>
+    <% end %>
+      <% @genres.each do |g| %>
+        <option value="<%= g[0] %>"><%= g[0] %></option>
+      <% end %>
+  </select>
+  <% if series.errors.include?(:genre) %>
+    <div class="ui red pointing label" style="margin-bottom:12px;margin-top:0px;">
+      Genre must be selected
+    </div>
+  <%end%>
+  <select name="series[country]" class="ui field fluid normal dropdown">
+    <% if @new %>
+      <option value="">Country</option>
+    <% else %>
+      <option value="<%= series.country %>"><%= series.country %></option>
+    <% end %>
+      <% @countries.each do |c| %>
+        <option value="<%= c[0] %>"><%= c[0] %></option>
+      <% end %>
+  </select>
+  <% if series.errors.include?(:country) %>
+    <div class="ui red pointing label" style="margin-bottom:12px;margin-top:0px;">
+      Country must be selected
+    </div>
+  <%end%>
+  <select name="series[language]" class="ui field fluid normal dropdown">
+    <% if @new %>
+      <option value="">Language</option>
+    <% else %>
+      <option value="<%= series.language %>"><%= series.language %></option>
+    <% end %>
+      <% @languages.each do |l| %>
+        <option value="<%= l[0] %>"><%= l[0] %></option>
+      <% end %>
+  </select>
+  <% if series.errors.include?(:language) %>
+    <div class="ui red pointing label" style="margin-bottom:12px;margin-top:0px;">
+      Language must be selected
+    </div>
+  <%end%>
+
+  <div class="<% if series.errors.include?(:summary) %> error <%end%>field">
+    <%= f.label :summary %>
+    <%= f.text_field :summary %>
+  </div>
+  <% if series.errors.include?(:summary) %>
+    <div class="ui red pointing label" style="margin-bottom:12px;margin-top:0px;">
+      <%= series.errors.full_messages_for(:summary).to_sentence %>
+    </div>
+  <%end%>
+
+
+  <div class="actions">
+    <% if @new %>
+      <%= f.submit 'Create Series', class: "ui blue fluid button"%>
+    <% else %> 
+      <%= f.submit 'Edit Series', class: "ui blue fluid button"%>
+    <% end %>
+  </div>
+<% end %>

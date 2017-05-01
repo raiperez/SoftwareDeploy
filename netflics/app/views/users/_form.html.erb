@@ -1,0 +1,35 @@
+<%= form_for(user) do |f| %>
+  <div class="<% if user.errors.include?(:first_name) %> error <%end%>field">
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name %>
+  </div>
+  <% if user.errors.include?(:first_name) %>
+    <div class="ui red pointing label" style="margin-bottom:12px;margin-top:0px;">
+      <%= user.errors.full_messages_for(:first_name).to_sentence %>
+    </div>
+  <%end%>
+
+  <div class="<% if user.errors.include?(:last_name) %> error <%end%>field">
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name %>
+  </div>
+  <% if user.errors.include?(:last_name) %>
+    <div class="ui red pointing label" style="margin-bottom:12px;margin-top:0px;">
+      <%= user.errors.full_messages_for(:last_name).to_sentence %>
+    </div>
+  <%end%>
+
+  <div class="<% if user.errors.include?(:email) %> error <%end%>field">
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </div>
+  <% if user.errors.include?(:email) %>
+    <div class="ui red pointing label" style="margin-bottom:12px;margin-top:0px;">
+      <%= user.errors.full_messages_for(:email).to_sentence %>
+    </div>
+  <%end%>
+
+  <div class="actions">
+    <%= f.submit class: "ui blue fluid button"%>
+  </div>
+<% end %>

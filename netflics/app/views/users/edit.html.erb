@@ -1,0 +1,13 @@
+<% provide(:title, 'Edit Info') %>
+<h1 class="ui center aligned huge header">
+  <div class="content header_text">
+    Edit Personal Information
+  </div>
+</h1>
+
+<div class="ui segment" style="width:60%;margin:0 auto;">
+  <div class="ui center aligned form <% if @user.errors.any? %> error <%end%>">
+	<%= render 'form', user: @user %>
+
+  </div>
+</div>

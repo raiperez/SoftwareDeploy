@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  genre: 1
+  country: 1
+  language: 1
+
+two:
+  genre: 1
+  country: 1
+  language: 1

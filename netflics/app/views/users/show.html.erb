@@ -1,0 +1,81 @@
+<% provide(:title, @user.first_name) %>
+<h1 class="ui center aligned huge header">
+  <div class="content header_text">
+    <%= @user.first_name %>'s Profile
+  </div>
+</h1>
+
+<% if admin? %>
+<h1 class="ui center aligned huge header">
+  <div class="content header_text">
+    ADMIN
+  </div>
+</h1>
+<% end %>
+
+<div class="ui grid">
+  <div class="six wide column">
+    <div class="ui card" style="margin-left:5%;">
+      <div class="image">
+        <img src="<%= image_url('batman_portrait.jpg') %>">
+      </div>
+      <div class="content">
+      	<div class="ui grid">
+      		<div class="six wide stackable column" style="color:black;">
+      		    <h2 class="header"><%= @user.first_name %> <%= @user.last_name %></h2>
+      		</div>
+      		<div class="ten wide column" style="color:black;text-align:right;">
+      			<a class="ui icon button" href="<%= edit_user_path(@user) %>">
+      			  Edit
+    			  <i class="pencil icon"></i>
+    			</a>
+      			<a class="ui red icon button" id="delete_button">
+    			  <i class="delete icon"></i>
+    			</a>
+      		</div>
+      	</div>
+
+        <div class="meta">
+          <span class="date"></span>
+        </div>
+        <div class="description">
+        </div>
+      </div>
+      <div class="extra content">
+          <i class="user icon"></i>
+          <%= @user.email %>
+      </div>
+    </div>
+  </div>
+  <div class="ten wide column">
+    <div class="ui center aligned segment">
+      <!-- <div class="ui red button" id="admin_button">Make Admin</div> -->
+      <%= link_to 'Make Admin', make_admin_path, method: :post, id: "admin_button", class: "ui red button"  %>
+      <%= link_to 'Not Admin', not_admin_path, method: :post, id: "not_admin_button", class: "ui red button"  %>
+    </div>
+  </div>
+</div>
+
+
+<div class="ui basic modal">
+  <div class="ui icon header">
+    <i class="delete icon"></i>
+    Delete Account
+  </div>
+  <div class="center aligned content">
+    <p>Are you sure you want to delete your account? The child accounts related to your user will also be deleted.</p>
+  </div>
+  <div class="actions">
+    <div class="ui red basic cancel inverted button">
+      <i class="remove icon"></i>
+      No
+    </div>
+	<%= link_to 'Destroy', @user, method: :delete, class: "ui green ok inverted button"%>
+  </div>
+</div>
+
+<script>
+	$('#delete_button').on('click', function(){
+		$('.ui.basic.modal').modal('show');
+	});
+</script>

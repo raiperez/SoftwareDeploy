@@ -1,0 +1,42 @@
+<% provide(:title, "Log in") %>
+
+<h1 class="ui center aligned huge header" style="margin-top:10%;">
+  <div class="content header_text">
+    Log In
+  </div>
+</h1>
+
+<div class="ui segment" style="width:40%;margin:0 auto;">
+  <div class="ui center aligned form <% unless flash.blank? %> error <%end%>">
+
+
+    <%= form_for(:session, url: login_path) do |f| %>
+      <div class="<% unless flash.blank? %> error <%end%> field">
+        <%= f.label :email %>
+        <%= f.email_field :email, class: '' %>   
+      </div>      
+      <div class="<% unless flash.blank? %> error <%end%> field">
+        <%= f.label :password %>
+        <%= f.password_field :password, class: '' %>
+      </div>
+      <%= f.submit "Log in", class: "ui fluid blue button" %>
+    <% end %>
+    <div class="ui center aligned container" style="margin:10px;">
+      <p>New user? <%= link_to "Sign up now!", signup_path %></p>
+    </div>
+
+    <% unless flash.blank? %>
+      <% flash.each do |message_type, message|  %>
+          <div class="ui error message">
+            <div class="header">
+              Unsuccessful login
+            </div>
+            <ul class="list">
+              <li><%= message %></li>
+            </ul>
+          </div>
+      <% end %>
+    <% end %>
+
+  </div>
+</div>

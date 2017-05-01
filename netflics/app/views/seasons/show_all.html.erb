@@ -1,0 +1,65 @@
+<% provide(:title, "All seasons") %>
+
+<div class="ui grid">
+  <div class="fourteen wide column">
+    <h1 class="ui center aligned">
+        All seasons for <%= @series.name %>
+    </h1>
+  </div>
+  <div class="two wide column">
+    <%= link_to 'Add Season', new_season_path(:series => @series.id), class: "ui fluid blue animated button"%>
+  </div>
+</div>
+
+<div class="ui grid">
+  <% @series.season.each do |season| %>
+    <div class="four wide column">
+      <div class="ui card" style="margin:10px 10px 10px 10px;">
+        <% if true %>
+          <div class="extra content">
+            <div class="ui two buttons">
+              <%= link_to 'Edit', edit_season_path(season.id), class: "ui basic green button" %>
+              <%= link_to "Delete", season_path(season.id), method: :delete, data: { confirm: 'Are you certain you want to delete this?' }, class: "ui basic red button" %>
+            </div>
+          </div>
+        <% end %>
+        <div class="content">
+          <div class="header">Season <%= season.number %></div>
+        </div>
+        <div class="content">
+          <h4 class="ui sub header">Summary</h4>
+          <div class="ui small feed">
+            <div class="event">
+              <div class="content">
+                <div class="summary">
+                   Year: <%= season.year %>
+                </div>
+              </div>
+            </div>
+            <div class="event">
+              <div class="content">
+                <div class="summary">
+                   Number of episodes: <%= season.episode.count %>
+                </div>
+              </div>
+            </div>
+            <div class="event">
+              <div class="content">
+                <div class="summary">
+                   <%= season.summary %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="extra content">
+          <%= link_to 'View all episodes', show_all_episodes_path(:season => season.id), class: "ui fluid blue animated button"%>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+<div class="ui divider"></div>
+<div>
+  <%= link_to 'Back to series', show_all_series_path, class: "ui fluid blue animated button"%>
+</div>

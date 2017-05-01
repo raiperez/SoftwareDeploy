@@ -1,0 +1,43 @@
+<%= form_for(season) do |f| %>
+  <div class="<% if season.errors.include?(:number) %> error <%end%>field">
+    <%= f.label :number %>
+    <%= f.number_field :number %>
+  </div>
+  <% if season.errors.include?(:number) %>
+    <div class="ui red pointing label" style="margin-bottom:12px;margin-top:0px;">
+      <%= season.errors.full_messages_for(:number).to_sentence %>
+    </div>
+  <%end%>
+
+  <div class="<% if season.errors.include?(:year) %> error <%end%>field">
+    <%= f.label :year %>
+    <%= f.number_field :year %>
+  </div>
+  <% if season.errors.include?(:year) %>
+    <div class="ui red pointing label" style="margin-bottom:12px;margin-top:0px;">
+      <%= season.errors.full_messages_for(:year).to_sentence %>
+    </div>
+  <%end%>
+
+  <div class="<% if season.errors.include?(:summary) %> error <%end%>field">
+    <%= f.label :summary %>
+    <%= f.text_field :summary %>
+  </div>
+  <% if season.errors.include?(:summary) %>
+    <div class="ui red pointing label" style="margin-bottom:12px;margin-top:0px;">
+      <%= season.errors.full_messages_for(:summary).to_sentence %>
+    </div>
+  <%end%>
+
+  <% if @new %>
+    <%= hidden_field_tag :series_id, season.series_id %>
+  <% end %>
+
+  <div class="actions">
+    <% if @new %>
+      <%= f.submit 'Create Season', class: "ui blue fluid button"%>
+    <% else %> 
+      <%= f.submit 'Edit Season', class: "ui blue fluid button"%>
+    <% end %>
+  </div>
+<% end %>

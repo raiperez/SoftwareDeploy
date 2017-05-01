@@ -1,0 +1,65 @@
+<%= form_for(episode) do |f| %>
+  <% if episode.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(episode.errors.count, "error") %> prohibited this episode from being saved:</h2>
+
+      <ul>
+      <% episode.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="<% if episode.errors.include?(:name) %> error <%end%>field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <% if episode.errors.include?(:name) %>
+    <div class="ui red pointing label" style="margin-bottom:12px;margin-top:0px;">
+      <%= episode.errors.full_messages_for(:name).to_sentence %>
+    </div>
+  <%end%>
+
+  <div class="<% if episode.errors.include?(:number) %> error <%end%>field">
+    <%= f.label :number %>
+    <%= f.number_field :number %>
+  </div>
+  <% if episode.errors.include?(:number) %>
+    <div class="ui red pointing label" style="margin-bottom:12px;margin-top:0px;">
+      <%= episode.errors.full_messages_for(:number).to_sentence %>
+    </div>
+  <%end%>
+
+  <div class="<% if episode.errors.include?(:length) %> error <%end%>field">
+    <%= f.label :length %>
+    <%= f.number_field :length %>
+  </div>
+  <% if episode.errors.include?(:length) %>
+    <div class="ui red pointing label" style="margin-bottom:12px;margin-top:0px;">
+      <%= episode.errors.full_messages_for(:length).to_sentence %>
+    </div>
+  <%end%>
+
+  <div class="<% if episode.errors.include?(:summary) %> error <%end%>field">
+    <%= f.label :summary %>
+    <%= f.text_field :summary %>
+  </div>
+  <% if episode.errors.include?(:summary) %>
+    <div class="ui red pointing label" style="margin-bottom:12px;margin-top:0px;">
+      <%= episode.errors.full_messages_for(:summary).to_sentence %>
+    </div>
+  <%end%>
+
+  <% if @new %>
+    <%= hidden_field_tag :season_id, episode.season.id %>
+  <% end %>
+
+  <div class="actions">
+    <% if @new %>
+      <%= f.submit 'Create Episode', class: "ui blue fluid button"%>
+    <% else %> 
+      <%= f.submit 'Edit Episode', class: "ui blue fluid button"%>
+    <% end %>
+  </div>
+<% end %>
